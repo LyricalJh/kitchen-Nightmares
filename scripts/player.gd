@@ -164,6 +164,17 @@ func _update_orbital_knives(delta: float) -> void:
 func _on_knife_hit_enemy(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		_kill_enemy(body)
+		_heal_on_knife_kill()
+
+
+## 회전 칼날 처치 시 체력 회복 — 현재 HP가 낮을수록 많이 회복
+func _heal_on_knife_kill() -> void:
+	# HP 비율 계산 (0.0 = 빈사, 1.0 = 만피)
+	var hp_ratio: float = float(hp) / float(max_hp)
+	# 회복량: 만피일 때 2, 빈사일 때 15 (반비례)
+	var heal_amount: int = int(lerp(15.0, 2.0, hp_ratio))
+	hp = mini(hp + heal_amount, max_hp)
+	hp_changed.emit(hp, max_hp)
 
 
 # ══════════════════════════════════════════════════════
