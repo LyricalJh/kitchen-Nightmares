@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c2bw0mfbxjero"]
+
+[ext_resource type="Script" path="res://scripts/level_up_ui.gd" id="1_level_up_ui"]
+
+[node name="LevelUpUI" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_level_up_ui")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="Background/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "레벨 업! 스킬을 선택하세요"
+horizontal_alignment = 1
+
+[node name="SkillButton1" type="Button" parent="Background/CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(250, 50)
+text = "공격력 +5"
+
+[node name="SkillButton2" type="Button" parent="Background/CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(250, 50)
+text = "발사 속도 +20%"
+
+[node name="SkillButton3" type="Button" parent="Background/CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(250, 50)
+text = "이동 속도 +30"

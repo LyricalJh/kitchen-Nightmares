@@ -1,0 +1,168 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-03-24T14:00:00.000Z",
+  "activeFeatures": ["godot-survivors-mvp", "godot-survivors-phase2", "godot-survivors-phase3", "infinite-map-camera"],
+  "features": {
+    "godot-survivors-mvp": {
+      "phase": "completed",
+      "matchRate": 99,
+      "iterationCount": 0,
+      "startedAt": "2026-03-24",
+      "history": [
+        {
+          "action": "plan_created",
+          "feature": "godot-survivors-mvp",
+          "timestamp": "2026-03-24",
+          "path": "docs/01-plan/features/godot-survivors-mvp.plan.md",
+          "detail": "Plan Plus로 생성. Godot 4 뱀서류 게임 MVP Phase 1 전체 계획"
+        },
+        {
+          "action": "design_created",
+          "feature": "godot-survivors-mvp",
+          "timestamp": "2026-03-24",
+          "path": "docs/02-design/features/godot-survivors-mvp.design.md",
+          "detail": "씬 구조, 스크립트 명세, 충돌 레이어, 시그널, 그룹, 구현 순서 설계"
+        },
+        {
+          "action": "do_completed",
+          "feature": "godot-survivors-mvp",
+          "timestamp": "2026-03-24",
+          "detail": "5 Steps 구현 완료: project.godot, player.tscn/gd, enemy.tscn/gd, projectile.tscn/gd, main.tscn/gd (총 9개 파일)"
+        },
+        {
+          "action": "check_completed",
+          "feature": "godot-survivors-mvp",
+          "timestamp": "2026-03-24",
+          "detail": "Gap Analysis 완료 - Match Rate 99%. 98개 항목 중 97개 일치, 8개 유익한 추가사항",
+          "path": "docs/03-analysis/godot-survivors-mvp.analysis.md"
+        },
+        {
+          "action": "report_completed",
+          "feature": "godot-survivors-mvp",
+          "timestamp": "2026-03-24",
+          "detail": "Match Rate 99%, 0 iterations. 9개 파일 구현, FR 8/8 완료",
+          "path": "docs/04-report/features/godot-survivors-mvp.report.md"
+        }
+      ]
+    },
+    "godot-survivors-phase2": {
+      "phase": "completed",
+      "matchRate": 97,
+      "iterationCount": 0,
+      "startedAt": "2026-03-24",
+      "history": [
+        {
+          "action": "plan_created",
+          "feature": "godot-survivors-phase2",
+          "timestamp": "2026-03-24",
+          "path": "docs/01-plan/features/godot-survivors-phase2.plan.md",
+          "detail": "Plan Plus로 생성. 성장 시스템: XP 보석, 레벨업, 스킬 선택 UI, HUD"
+        },
+        {
+          "action": "design_created",
+          "feature": "godot-survivors-phase2",
+          "timestamp": "2026-03-24",
+          "path": "docs/02-design/features/godot-survivors-phase2.design.md",
+          "detail": "XP Gem/HUD/LevelUpUI 씬, 시그널 맵, process_mode, 8단계 구현 순서 설계"
+        },
+        {
+          "action": "do_completed",
+          "feature": "godot-survivors-phase2",
+          "timestamp": "2026-03-24",
+          "detail": "8 Steps 구현 완료: project.godot 수정, xp_gem/hud/level_up_ui 생성, player/enemy/projectile/main 수정 (신규 6개 + 수정 5개)"
+        },
+        {
+          "action": "check_completed",
+          "feature": "godot-survivors-phase2",
+          "timestamp": "2026-03-24",
+          "detail": "Gap Analysis 완료 - Match Rate 97%. 93개 항목 중 91개 일치, 6개 유익한 추가사항",
+          "path": "docs/03-analysis/godot-survivors-phase2.analysis.md"
+        },
+        {
+          "action": "report_completed",
+          "feature": "godot-survivors-phase2",
+          "timestamp": "2026-03-24",
+          "detail": "Match Rate 97%, 0 iterations. XP 보석, 레벨업, 스킬 선택 UI, HUD 완료",
+          "path": "docs/04-report/features/godot-survivors-phase2.report.md"
+        }
+      ]
+    },
+    "godot-survivors-phase3": {
+      "phase": "completed",
+      "matchRate": 98,
+      "iterationCount": 0,
+      "startedAt": "2026-03-24",
+      "history": [
+        {
+          "action": "plan_created",
+          "feature": "godot-survivors-phase3",
+          "timestamp": "2026-03-24",
+          "path": "docs/01-plan/features/godot-survivors-phase3.plan.md",
+          "detail": "Plan Plus로 생성. 게임 루프 완성: 타이틀, 게임오버, 생존시간/최고기록, 웨이브"
+        },
+        {
+          "action": "design_created",
+          "feature": "godot-survivors-phase3",
+          "timestamp": "2026-03-24",
+          "path": "docs/02-design/features/godot-survivors-phase3.design.md",
+          "detail": "TitleScreen/GameOverUI 씬, 씬 전환 흐름, 웨이브 시스템, ConfigFile 저장, 6단계 구현 순서"
+        },
+        {
+          "action": "do_completed",
+          "feature": "godot-survivors-phase3",
+          "timestamp": "2026-03-24",
+          "detail": "6 Steps 구현 완료: title_screen/game_over_ui 생성, player/hud/main 수정, project.godot 변경 (신규 4개 + 수정 6개)"
+        },
+        {
+          "action": "check_completed",
+          "feature": "godot-survivors-phase3",
+          "timestamp": "2026-03-24",
+          "detail": "Gap Analysis 완료 - Match Rate 98.5%. 68개 항목 중 67개 일치, 4개 유익한 추가사항",
+          "path": "docs/03-analysis/godot-survivors-phase3.analysis.md"
+        },
+        {
+          "action": "report_completed",
+          "feature": "godot-survivors-phase3",
+          "timestamp": "2026-03-24",
+          "detail": "Match Rate 98.5%, 0 iterations. 타이틀, 게임오버, 생존시간/최고기록, 웨이브 난이도 완료. 전체 게임 완성!",
+          "path": "docs/04-report/features/godot-survivors-phase3.report.md"
+        }
+      ]
+    },
+    "infinite-map-camera": {
+      "phase": "check",
+      "matchRate": 93,
+      "iterationCount": 0,
+      "startedAt": "2026-03-24",
+      "history": [
+        {
+          "action": "plan_created",
+          "feature": "infinite-map-camera",
+          "timestamp": "2026-03-24",
+          "path": "docs/01-plan/features/infinite-map-camera.plan.md",
+          "detail": "Plan Plus로 생성. Camera2D 추적, 무한 맵, 동적 바닥 타일링, 원거리 정리"
+        },
+        {
+          "action": "design_created",
+          "feature": "infinite-map-camera",
+          "timestamp": "2026-03-24",
+          "path": "docs/02-design/features/infinite-map-camera.design.md",
+          "detail": "Camera2D smoothing, clamp 제거, 청크 기반 동적 타일링, 원거리 정리, 6단계 구현 순서"
+        },
+        {
+          "action": "do_completed",
+          "feature": "infinite-map-camera",
+          "timestamp": "2026-03-24",
+          "detail": "6 Steps 구현: Camera2D 추가, clamp 제거, Floor→FloorTiles, 동적 타일링, 원거리 정리 (수정 4개 파일)"
+        },
+        {
+          "action": "check_completed",
+          "feature": "infinite-map-camera",
+          "timestamp": "2026-03-24",
+          "detail": "Gap Analysis 완료 - Match Rate 93%. 30개 항목 중 26개 일치 + 4개 개선, FR 5/5 완료",
+          "path": "docs/03-analysis/infinite-map-camera.analysis.md"
+        }
+      ]
+    }
+  }
+}
