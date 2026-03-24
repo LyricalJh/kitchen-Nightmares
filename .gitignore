@@ -1,0 +1,18 @@
+# Godot 4 auto-generated
+.godot/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+
+# bkit state
+.bkit/
+
+# Export builds
+export/
+*.exe
+*.pck

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/xp_gem.png" id="2_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gem"]
-size = Vector2(12, 12)
+size = Vector2(16, 16)
 
 [node name="XPGem" type="Area2D"]
 collision_layer = 8
@@ -14,7 +14,7 @@ script = ExtResource("1_xp_gem")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_texture")
 texture_filter = 0
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.025, 0.025)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gem")

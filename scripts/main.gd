@@ -24,9 +24,10 @@ var game_over: bool = false
 # 바닥 타일 시스템 (FR-27: 동적 타일링)
 var floor_texture: Texture2D = preload("res://assets/sprites/floor.png")
 var floor_tiles: Dictionary = {}  # Vector2i → Sprite2D
-const TILE_SIZE: int = 16
-const TILE_RANGE: int = 50       # 플레이어 주변 ±50타일 생성
-const TILE_CLEANUP: int = 60     # ±60타일 밖 제거
+const TILE_SIZE: int = 256        # 1024px * 0.25 스케일 = 256px 타일
+const TILE_SCALE: float = 0.25   # 바닥 이미지 스케일 (1024 → 256px)
+const TILE_RANGE: int = 5        # 플레이어 주변 ±5타일 생성 (2560px 범위)
+const TILE_CLEANUP: int = 7      # ±7타일 밖 제거
 var _last_player_tile: Vector2i = Vector2i(99999, 99999)  # 타일 좌표 캐시
 
 # 원거리 정리 거리 (FR-28, FR-29)
@@ -105,7 +106,8 @@ func _update_floor_tiles() -> void:
 				var tile := Sprite2D.new()
 				tile.texture = floor_texture
 				tile.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-				tile.global_position = Vector2(x * TILE_SIZE + 8, y * TILE_SIZE + 8)
+				tile.scale = Vector2(TILE_SCALE, TILE_SCALE)
+				tile.global_position = Vector2(x * TILE_SIZE + TILE_SIZE / 2, y * TILE_SIZE + TILE_SIZE / 2)
 				floor_container.add_child(tile)
 				floor_tiles[key] = tile
 
