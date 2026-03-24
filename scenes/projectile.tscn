@@ -14,7 +14,7 @@ script = ExtResource("1_projectile")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_texture")
 texture_filter = 0
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.04, 0.04)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_projectile")

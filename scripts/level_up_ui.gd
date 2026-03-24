@@ -17,7 +17,7 @@ func _ready() -> void:
 	# 초기에는 숨김
 	visible = false
 	# 버튼 시그널 연결
-	skill_button_1.pressed.connect(_on_attack_selected)
+	skill_button_1.pressed.connect(_on_orbital_knife_selected)
 	skill_button_2.pressed.connect(_on_fire_rate_selected)
 	skill_button_3.pressed.connect(_on_move_speed_selected)
 
@@ -32,13 +32,13 @@ func hide_ui() -> void:
 	visible = false
 
 
-## 공격력 스킬 선택
-func _on_attack_selected() -> void:
-	skill_selected.emit("attack")
+## 회전 칼날 스킬 선택
+func _on_orbital_knife_selected() -> void:
+	skill_selected.emit("orbital_knife")
 	hide_ui()
 
 
-## 발사 속도 스킬 선택
+## 근접 공격 속도 스킬 선택
 func _on_fire_rate_selected() -> void:
 	skill_selected.emit("fire_rate")
 	hide_ui()

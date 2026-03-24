@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://prmn74llqdmb"]
+[gd_scene format=3 uid="uid://prmn74llqdmb"]
 
 [ext_resource type="Script" uid="uid://dgywurs588x8r" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="PackedScene" uid="uid://bq4k7m2r1x3a5" path="res://scenes/player.tscn" id="2_player"]
@@ -6,20 +6,19 @@
 [ext_resource type="PackedScene" path="res://scenes/level_up_ui.tscn" id="4_level_up_ui"]
 [ext_resource type="PackedScene" path="res://scenes/game_over_ui.tscn" id="5_game_over"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1115354060]
 script = ExtResource("1_main")
 
-[node name="FloorTiles" type="Node2D" parent="."]
+[node name="FloorTiles" type="Node2D" parent="." unique_id=1190059412]
 
-[node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector2(640, 360)
+[node name="Player" parent="." unique_id=1799463859 instance=ExtResource("2_player")]
+position = Vector2(642, 360)
 
-[node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 1.0
+[node name="EnemySpawnTimer" type="Timer" parent="." unique_id=862782755]
 autostart = true
 
-[node name="HUD" parent="." instance=ExtResource("3_hud")]
+[node name="HUD" parent="." unique_id=1490627827 instance=ExtResource("3_hud")]
 
-[node name="LevelUpUI" parent="." instance=ExtResource("4_level_up_ui")]
+[node name="LevelUpUI" parent="." unique_id=763749520 instance=ExtResource("4_level_up_ui")]
 
-[node name="GameOverUI" parent="." instance=ExtResource("5_game_over")]
+[node name="GameOverUI" parent="." unique_id=1080259139 instance=ExtResource("5_game_over")]

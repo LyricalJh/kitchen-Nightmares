@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/player.png" id="2_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
-size = Vector2(40, 40)
+size = Vector2(80, 80)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 1
@@ -14,7 +14,7 @@ script = ExtResource("1_player")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_texture")
 texture_filter = 0
-scale = Vector2(0.06, 0.06)
+scale = Vector2(0.12, 0.12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_player")
@@ -24,5 +24,6 @@ wait_time = 0.5
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 5.0

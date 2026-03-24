@@ -7,3 +7,4 @@ res://scenes/enemy.tscn
 res://scenes/projectile.tscn
 res://scenes/xp_gem.tscn
 res://scripts/hud.gd
+res://scripts/level_up_ui.gd

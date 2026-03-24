@@ -21,14 +21,49 @@ var enemy_speed_multiplier: float = 1.0
 # 게임 상태
 var game_over: bool = false
 
-# 바닥 타일 시스템 (FR-27: 동적 타일링)
-var floor_texture: Texture2D = preload("res://assets/sprites/floor.png")
+# 바닥 타일 시스템 (FR-27: 동적 랜덤 타일링)
+# 순수 바닥 (60%) — 깨끗한 돌바닥
+var floor_plain: Array[Texture2D] = [
+	preload("res://assets/sprites/floor_tiles/tile_7.png"),
+	preload("res://assets/sprites/floor_tiles/tile_8.png"),
+	preload("res://assets/sprites/floor_tiles/tile_12.png"),
+	preload("res://assets/sprites/floor_tiles/tile_18.png"),
+]
+# 바닥+약간 불 (25%)
+var floor_fire: Array[Texture2D] = [
+	preload("res://assets/sprites/floor_tiles/tile_9.png"),
+	preload("res://assets/sprites/floor_tiles/tile_13.png"),
+	preload("res://assets/sprites/floor_tiles/tile_14.png"),
+	preload("res://assets/sprites/floor_tiles/tile_17.png"),
+	preload("res://assets/sprites/floor_tiles/tile_19.png"),
+]
+# 장식 바닥 (10%) — 뼈/해골 등
+var floor_deco: Array[Texture2D] = [
+	preload("res://assets/sprites/floor_tiles/tile_3.png"),
+	preload("res://assets/sprites/floor_tiles/tile_11.png"),
+	preload("res://assets/sprites/floor_tiles/tile_15.png"),
+	preload("res://assets/sprites/floor_tiles/tile_16.png"),
+	preload("res://assets/sprites/floor_tiles/tile_20.png"),
+]
+# 오브젝트 타일 (5%) — 그릴/냄비/음식
+var floor_object: Array[Texture2D] = [
+	preload("res://assets/sprites/floor_tiles/tile_1.png"),
+	preload("res://assets/sprites/floor_tiles/tile_2.png"),
+	preload("res://assets/sprites/floor_tiles/tile_4.png"),
+	preload("res://assets/sprites/floor_tiles/tile_5.png"),
+	preload("res://assets/sprites/floor_tiles/tile_6.png"),
+	preload("res://assets/sprites/floor_tiles/tile_10.png"),
+	preload("res://assets/sprites/floor_tiles/tile_21.png"),
+	preload("res://assets/sprites/floor_tiles/tile_22.png"),
+	preload("res://assets/sprites/floor_tiles/tile_23.png"),
+	preload("res://assets/sprites/floor_tiles/tile_24.png"),
+	preload("res://assets/sprites/floor_tiles/tile_25.png"),
+]
 var floor_tiles: Dictionary = {}  # Vector2i → Sprite2D
-const TILE_SIZE: int = 256        # 1024px * 0.25 스케일 = 256px 타일
-const TILE_SCALE: float = 0.25   # 바닥 이미지 스케일 (1024 → 256px)
-const TILE_RANGE: int = 5        # 플레이어 주변 ±5타일 생성 (2560px 범위)
-const TILE_CLEANUP: int = 7      # ±7타일 밖 제거
-var _last_player_tile: Vector2i = Vector2i(99999, 99999)  # 타일 좌표 캐시
+const TILE_SIZE: int = 204        # 204px 원본 크기 그대로
+const TILE_RANGE: int = 5         # 플레이어 주변 ±5타일 생성
+const TILE_CLEANUP: int = 7       # ±7타일 밖 제거
+var _last_player_tile: Vector2i = Vector2i(99999, 99999)
 
 # 원거리 정리 거리 (FR-28, FR-29)
 const ENEMY_CLEANUP_DIST: float = 1200.0
@@ -104,9 +139,8 @@ func _update_floor_tiles() -> void:
 			var key := Vector2i(x, y)
 			if not floor_tiles.has(key):
 				var tile := Sprite2D.new()
-				tile.texture = floor_texture
+				tile.texture = _pick_random_floor_texture()
 				tile.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-				tile.scale = Vector2(TILE_SCALE, TILE_SCALE)
 				tile.global_position = Vector2(x * TILE_SIZE + TILE_SIZE / 2, y * TILE_SIZE + TILE_SIZE / 2)
 				floor_container.add_child(tile)
 				floor_tiles[key] = tile
@@ -119,6 +153,19 @@ func _update_floor_tiles() -> void:
 	for key in keys_to_remove:
 		floor_tiles[key].queue_free()
 		floor_tiles.erase(key)
+
+
+## 가중치 기반 랜덤 바닥 텍스처 선택 (바닥 60%, 불 25%, 장식 10%, 오브젝트 5%)
+func _pick_random_floor_texture() -> Texture2D:
+	var roll := randf() * 100.0
+	if roll < 60.0:
+		return floor_plain.pick_random()
+	elif roll < 85.0:
+		return floor_fire.pick_random()
+	elif roll < 95.0:
+		return floor_deco.pick_random()
+	else:
+		return floor_object.pick_random()
 
 
 ## 원거리 적/보석 자동 제거 (FR-28, FR-29)
@@ -154,7 +201,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	_spawn_enemy()
 
 
-## 적 인스턴스 생성
+## 적 인스턴스 생성 — 3종류 랜덤 스폰
 func _spawn_enemy() -> void:
 	var enemy := enemy_scene.instantiate()
 
@@ -163,28 +210,80 @@ func _spawn_enemy() -> void:
 	var spawn_pos := player.global_position + Vector2(cos(angle), sin(angle)) * spawn_radius
 	enemy.global_position = spawn_pos
 
+	# 적 종류 랜덤 결정 (일반 60%, 빠른 25%, 큰 15%)
+	var roll := randf() * 100.0
+	if roll < 60.0:
+		# 일반 토마토 (기본)
+		pass
+	elif roll < 85.0:
+		# 빠른 토마토 — 작고 빠르고 노란색
+		enemy.speed = 140.0
+		enemy.get_node("Sprite2D").modulate = Color(1.0, 0.8, 0.2, 1.0)
+		enemy.get_node("Sprite2D").scale *= 0.7
+	else:
+		# 큰 토마토 — 크고 느리고 보라색
+		enemy.speed = 50.0
+		enemy.damage = 20
+		enemy.get_node("Sprite2D").modulate = Color(0.7, 0.3, 0.8, 1.0)
+		enemy.get_node("Sprite2D").scale *= 1.5
+		enemy.get_node("CollisionShape2D").scale *= 1.3
+
 	# 웨이브 배수 적용 (FR-24: 적 속도 증가)
 	enemy.speed *= enemy_speed_multiplier
 
 	add_child(enemy)
 
 
-## 발사체 생성 (FR-06: 가장 가까운 적 자동 타겟팅)
+## 근접 공격 — 범위 내 모든 적 타격 + 칼 휘두르기 이펙트
+const MELEE_RANGE: float = 150.0  # 근접 공격 범위 (확대)
+var melee_knife_texture: Texture2D = preload("res://assets/sprites/projectile.png")
+
 func _on_attack_timer_timeout() -> void:
 	if game_over:
 		return
 
-	var closest_enemy := _get_closest_enemy()
-	if closest_enemy == null:
+	# 근접 범위 내 모든 적 탐색
+	var enemies_in_range: Array[Node2D] = []
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		var dist := player.global_position.distance_to(enemy.global_position)
+		if dist <= MELEE_RANGE:
+			enemies_in_range.append(enemy)
+
+	if enemies_in_range.is_empty():
 		return
 
-	var direction := (closest_enemy.global_position - player.global_position).normalized()
+	# 칼 휘두르기 이펙트 표시
+	_show_melee_slash()
 
-	var projectile := projectile_scene.instantiate()
-	projectile.global_position = player.global_position
-	projectile.direction = direction
+	# 범위 내 모든 적 처치
+	for enemy in enemies_in_range:
+		if is_instance_valid(enemy):
+			if enemy.has_method("die"):
+				enemy.die()
+			else:
+				enemy.queue_free()
 
-	add_child(projectile)
+
+## 칼 휘두르기 이펙트 (반원 회전 후 사라짐)
+func _show_melee_slash() -> void:
+	var slash := Sprite2D.new()
+	slash.texture = melee_knife_texture
+	slash.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	slash.scale = Vector2(0.06, 0.06)
+	slash.global_position = player.global_position
+	add_child(slash)
+
+	# Tween으로 반원 회전 애니메이션
+	var tween := create_tween()
+	var start_angle := -PI / 2
+	slash.rotation = start_angle
+	slash.position = player.position + Vector2(cos(start_angle), sin(start_angle)) * 60.0
+
+	tween.tween_method(func(angle: float):
+		slash.rotation = angle
+		slash.global_position = player.global_position + Vector2(cos(angle), sin(angle)) * 60.0
+	, start_angle, start_angle + PI, 0.15)
+	tween.tween_callback(slash.queue_free)
 
 
 ## 가장 가까운 적 탐색

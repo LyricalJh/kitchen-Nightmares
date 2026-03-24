@@ -34,12 +34,12 @@ horizontal_alignment = 1
 [node name="SkillButton1" type="Button" parent="Background/CenterContainer/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(250, 50)
-text = "공격력 +5"
+text = "회전 칼날 추가"
 
 [node name="SkillButton2" type="Button" parent="Background/CenterContainer/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(250, 50)
-text = "발사 속도 +20%"
+text = "근접 공격 속도 +20%"
 
 [node name="SkillButton3" type="Button" parent="Background/CenterContainer/VBoxContainer"]
 layout_mode = 2
