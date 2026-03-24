@@ -26,7 +26,15 @@ signal xp_changed(current: int, required: int)
 signal died  # FR-18: HP 0 도달 시 게임오버 트리거
 
 
+# 흰 배경 제거 셰이더
+var bg_remove_shader: Shader = preload("res://assets/shaders/remove_white_bg.gdshader")
+
+
 func _ready() -> void:
+	# 플레이어 스프라이트 흰 배경 제거
+	var mat := ShaderMaterial.new()
+	mat.shader = bg_remove_shader
+	$Sprite2D.material = mat
 	# 초기 HP/XP 시그널 발생 (HUD 초기화용)
 	hp_changed.emit(hp, max_hp)
 	xp_changed.emit(xp, xp_to_next_level)
@@ -46,6 +54,9 @@ func _physics_process(delta: float) -> void:
 
 	# 회전 칼날 업데이트
 	update_orbital_knives(delta)
+
+	# 갈릭 폭탄 업데이트
+	update_garlic_bomb(delta)
 
 	# 데미지 쿨다운 감소
 	if damage_cooldown > 0.0:
@@ -104,11 +115,23 @@ const KNIFE_ORBIT_SPEED: float = 3.0     # 공전 속도 (rad/s)
 var knife_texture: Texture2D = preload("res://assets/sprites/projectile.png")
 
 
+## 갈릭 폭탄 시스템
+var garlic_bomb_active: bool = false    # 폭탄 스킬 활성화 여부
+var garlic_bomb_timer: float = 0.0      # 폭탄 발사 쿨다운 추적
+var garlic_bomb_count: int = 0          # 폭탄 스킬 레벨 (선택 횟수)
+const GARLIC_BOMB_COOLDOWN: float = 3.0 # 폭탄 발사 간격 (초)
+const GARLIC_BOMB_RADIUS: float = 120.0 # 폭발 반경 (픽셀)
+var garlic_texture: Texture2D = preload("res://assets/sprites/갈릭 디핑 소스 폭탄 (투척 무기  던지면 터짐).png")
+
+
 ## 스킬 적용 (FR-14: 스킬 선택 후 스탯 즉시 적용)
 func apply_skill(skill_type: String) -> void:
 	match skill_type:
 		"orbital_knife":
 			_add_orbital_knife()
+		"garlic_bomb":
+			garlic_bomb_count += 1
+			garlic_bomb_active = true
 		"fire_rate":
 			var timer := get_node("AttackTimer") as Timer
 			timer.wait_time = max(timer.wait_time * 0.8, 0.1)
@@ -120,10 +143,13 @@ func apply_skill(skill_type: String) -> void:
 func _add_orbital_knife() -> void:
 	var knife := Area2D.new()
 
-	# 스프라이트 설정
+	# 스프라이트 설정 + 흰 배경 제거
 	var sprite := Sprite2D.new()
 	sprite.texture = knife_texture
 	sprite.scale = Vector2(0.04, 0.04)
+	var mat := ShaderMaterial.new()
+	mat.shader = bg_remove_shader
+	sprite.material = mat
 	knife.add_child(sprite)
 
 	# 충돌 영역 설정
@@ -184,3 +210,103 @@ func _on_knife_hit_enemy(body: Node2D) -> void:
 			body.die()
 		else:
 			body.queue_free()
+
+
+## 갈릭 폭탄 업데이트 (매 프레임 호출)
+func update_garlic_bomb(delta: float) -> void:
+	if not garlic_bomb_active:
+		return
+
+	garlic_bomb_timer += delta
+	if garlic_bomb_timer < GARLIC_BOMB_COOLDOWN:
+		return
+	garlic_bomb_timer = 0.0
+
+	# 가장 가까운 적 위치에 폭탄 투척 (동시에 garlic_bomb_count개)
+	var enemies := get_tree().get_nodes_in_group("enemies")
+	if enemies.is_empty():
+		return
+
+	# 가까운 적 순서로 정렬
+	var sorted_enemies := enemies.duplicate()
+	sorted_enemies.sort_custom(func(a, b):
+		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	)
+
+	# 폭탄 개수만큼 투척 (레벨업 시 +1개)
+	for i in min(garlic_bomb_count, sorted_enemies.size()):
+		var target_pos: Vector2 = sorted_enemies[i].global_position
+		_launch_garlic_bomb(target_pos)
+
+
+## 갈릭 폭탄 투척 — 위에서 떨어지며 바운스 후 폭발
+func _launch_garlic_bomb(target_pos: Vector2) -> void:
+	var bomb := Sprite2D.new()
+	bomb.texture = garlic_texture
+	bomb.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	bomb.scale = Vector2(0.08, 0.08)
+	bomb.z_index = 10
+	var bomb_mat := ShaderMaterial.new()
+	bomb_mat.shader = bg_remove_shader
+	bomb.material = bomb_mat
+
+	# 타겟 위쪽 높은 곳에서 시작
+	bomb.global_position = Vector2(target_pos.x, target_pos.y - 400.0)
+	get_tree().current_scene.add_child(bomb)
+
+	var tween := get_tree().create_tween()
+
+	# 1단계: 위에서 아래로 떨어짐
+	tween.tween_property(bomb, "global_position:y", target_pos.y, 0.4) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+
+	# 2단계: 바운스 1 — 위로 튀어오름
+	tween.tween_property(bomb, "global_position:y", target_pos.y - 60.0, 0.15) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+
+	# 3단계: 바운스 1 — 다시 내려옴
+	tween.tween_property(bomb, "global_position:y", target_pos.y, 0.15) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+
+	# 4단계: 바운스 2 — 작게 튀어오름
+	tween.tween_property(bomb, "global_position:y", target_pos.y - 25.0, 0.1) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+
+	# 5단계: 바운스 2 — 다시 내려옴
+	tween.tween_property(bomb, "global_position:y", target_pos.y, 0.1) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+
+	# 6단계: 폭발 — 범위 내 적 처치
+	tween.tween_callback(func():
+		_garlic_explode(bomb.global_position)
+		bomb.queue_free()
+	)
+
+
+## 갈릭 폭발 — 범위 내 모든 적 처치 + 노란 원 이펙트
+func _garlic_explode(pos: Vector2) -> void:
+	# 폭발 이펙트 (노란 원이 커지면서 사라짐)
+	var effect := Node2D.new()
+	effect.global_position = pos
+	get_tree().current_scene.add_child(effect)
+
+	# 노란 원 그리기용 스프라이트 대신 ColorRect 원형 근사
+	var circle := Sprite2D.new()
+	circle.texture = garlic_texture
+	circle.scale = Vector2(0.01, 0.01)
+	circle.modulate = Color(1.0, 0.9, 0.3, 0.7)
+	effect.add_child(circle)
+
+	# 폭발 확대 애니메이션
+	var fx_tween := get_tree().create_tween()
+	fx_tween.tween_property(circle, "scale", Vector2(0.25, 0.25), 0.2)
+	fx_tween.parallel().tween_property(circle, "modulate:a", 0.0, 0.3)
+	fx_tween.tween_callback(effect.queue_free)
+
+	# 범위 내 모든 적 처치
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if pos.distance_to(enemy.global_position) <= GARLIC_BOMB_RADIUS:
+			if enemy.has_method("die"):
+				enemy.die()
+			else:
+				enemy.queue_free()

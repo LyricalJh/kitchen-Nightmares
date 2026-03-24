@@ -8,3 +8,4 @@ res://scenes/projectile.tscn
 res://scenes/xp_gem.tscn
 res://scripts/hud.gd
 res://scripts/level_up_ui.gd
+res://scripts/xp_gem.gd

@@ -9,6 +9,7 @@ signal skill_selected(skill_type: String)
 @onready var skill_button_1: Button = $Background/CenterContainer/VBoxContainer/SkillButton1
 @onready var skill_button_2: Button = $Background/CenterContainer/VBoxContainer/SkillButton2
 @onready var skill_button_3: Button = $Background/CenterContainer/VBoxContainer/SkillButton3
+@onready var skill_button_4: Button = $Background/CenterContainer/VBoxContainer/SkillButton4
 
 
 func _ready() -> void:
@@ -18,8 +19,9 @@ func _ready() -> void:
 	visible = false
 	# 버튼 시그널 연결
 	skill_button_1.pressed.connect(_on_orbital_knife_selected)
-	skill_button_2.pressed.connect(_on_fire_rate_selected)
-	skill_button_3.pressed.connect(_on_move_speed_selected)
+	skill_button_2.pressed.connect(_on_garlic_bomb_selected)
+	skill_button_3.pressed.connect(_on_fire_rate_selected)
+	skill_button_4.pressed.connect(_on_move_speed_selected)
 
 
 ## UI 표시 (FR-12: 레벨업 시 호출)
@@ -35,6 +37,12 @@ func hide_ui() -> void:
 ## 회전 칼날 스킬 선택
 func _on_orbital_knife_selected() -> void:
 	skill_selected.emit("orbital_knife")
+	hide_ui()
+
+
+## 갈릭 폭탄 스킬 선택
+func _on_garlic_bomb_selected() -> void:
+	skill_selected.emit("garlic_bomb")
 	hide_ui()
 
 

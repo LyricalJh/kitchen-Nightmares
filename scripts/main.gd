@@ -6,6 +6,17 @@ extends Node2D
 var enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
 var projectile_scene: PackedScene = preload("res://scenes/projectile.tscn")
 
+# 적 종류별 텍스처
+var tex_tomato: Texture2D = preload("res://assets/sprites/enemy.png")
+var tex_onion: Texture2D = preload("res://assets/sprites/enemy_onion.png")
+var tex_mushroom: Texture2D = preload("res://assets/sprites/enemy_mushroom.png")
+var tex_pepperoni: Texture2D = preload("res://assets/sprites/enemy_pepperoni.png")
+var tex_cheese: Texture2D = preload("res://assets/sprites/enemy_cheese.png")
+var tex_boss: Texture2D = preload("res://assets/sprites/boss_truffle.png")
+
+# 보스 스폰 관리
+var boss_spawned_waves: Array[int] = []  # 이미 보스 나온 웨이브
+
 # 적 스폰 반경 (플레이어 기준, 화면 밖에서 스폰)
 var spawn_radius: float = 500.0
 
@@ -201,7 +212,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	_spawn_enemy()
 
 
-## 적 인스턴스 생성 — 3종류 랜덤 스폰
+## 적 인스턴스 생성 — 5종류 + 보스 랜덤 스폰
 func _spawn_enemy() -> void:
 	var enemy := enemy_scene.instantiate()
 
@@ -210,23 +221,44 @@ func _spawn_enemy() -> void:
 	var spawn_pos := player.global_position + Vector2(cos(angle), sin(angle)) * spawn_radius
 	enemy.global_position = spawn_pos
 
-	# 적 종류 랜덤 결정 (일반 60%, 빠른 25%, 큰 15%)
-	var roll := randf() * 100.0
-	if roll < 60.0:
-		# 일반 토마토 (기본)
-		pass
-	elif roll < 85.0:
-		# 빠른 토마토 — 작고 빠르고 노란색
-		enemy.speed = 140.0
-		enemy.get_node("Sprite2D").modulate = Color(1.0, 0.8, 0.2, 1.0)
-		enemy.get_node("Sprite2D").scale *= 0.7
+	var sprite := enemy.get_node("Sprite2D") as Sprite2D
+
+	# 웨이브 3 이상부터 보스 스폰 (웨이브당 1회)
+	if wave_level >= 3 and wave_level not in boss_spawned_waves and randf() < 0.1:
+		boss_spawned_waves.append(wave_level)
+		sprite.texture = tex_boss
+		sprite.scale = Vector2(0.12, 0.12)
+		enemy.speed = 40.0
+		enemy.damage = 30
+		enemy.get_node("CollisionShape2D").scale = Vector2(2.0, 2.0)
 	else:
-		# 큰 토마토 — 크고 느리고 보라색
-		enemy.speed = 50.0
-		enemy.damage = 20
-		enemy.get_node("Sprite2D").modulate = Color(0.7, 0.3, 0.8, 1.0)
-		enemy.get_node("Sprite2D").scale *= 1.5
-		enemy.get_node("CollisionShape2D").scale *= 1.3
+		# 적 종류 랜덤 결정
+		var roll := randf() * 100.0
+		if roll < 30.0:
+			# 토마토 (기본, 30%)
+			sprite.texture = tex_tomato
+		elif roll < 55.0:
+			# 양파 — 빠르고 체력 낮음 (25%)
+			sprite.texture = tex_onion
+			enemy.speed = 140.0
+		elif roll < 75.0:
+			# 양송이 버섯 — 보통, 맷집 (20%)
+			sprite.texture = tex_mushroom
+			sprite.scale *= 1.2
+			enemy.speed = 60.0
+		elif roll < 90.0:
+			# 페퍼로니 — 돌진형, 공격력 높음 (15%)
+			sprite.texture = tex_pepperoni
+			sprite.scale *= 1.3
+			enemy.speed = 120.0
+			enemy.damage = 20
+		else:
+			# 모차렐라 치즈 슬라임 — 느리고 큼 (10%)
+			sprite.texture = tex_cheese
+			sprite.scale *= 1.4
+			enemy.speed = 45.0
+			enemy.damage = 15
+			enemy.get_node("CollisionShape2D").scale *= 1.2
 
 	# 웨이브 배수 적용 (FR-24: 적 속도 증가)
 	enemy.speed *= enemy_speed_multiplier
@@ -234,9 +266,9 @@ func _spawn_enemy() -> void:
 	add_child(enemy)
 
 
-## 근접 공격 — 범위 내 모든 적 타격 + 칼 휘두르기 이펙트
-const MELEE_RANGE: float = 150.0  # 근접 공격 범위 (확대)
-var melee_knife_texture: Texture2D = preload("res://assets/sprites/projectile.png")
+## 근접 공격 — 범위 내 모든 적 타격 + 핫소스 물총 이펙트
+const MELEE_RANGE: float = 150.0  # 근접 공격 범위
+var hot_sauce_texture: Texture2D = preload("res://assets/sprites/hot_sauce.png")
 
 func _on_attack_timer_timeout() -> void:
 	if game_over:
@@ -252,8 +284,8 @@ func _on_attack_timer_timeout() -> void:
 	if enemies_in_range.is_empty():
 		return
 
-	# 칼 휘두르기 이펙트 표시
-	_show_melee_slash()
+	# 가장 가까운 적 방향으로 핫소스 발사 이펙트
+	_show_hot_sauce_attack(enemies_in_range[0].global_position)
 
 	# 범위 내 모든 적 처치
 	for enemy in enemies_in_range:
@@ -264,26 +296,32 @@ func _on_attack_timer_timeout() -> void:
 				enemy.queue_free()
 
 
-## 칼 휘두르기 이펙트 (반원 회전 후 사라짐)
-func _show_melee_slash() -> void:
-	var slash := Sprite2D.new()
-	slash.texture = melee_knife_texture
-	slash.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	slash.scale = Vector2(0.06, 0.06)
-	slash.global_position = player.global_position
-	add_child(slash)
+## 핫소스 물총 발사 이펙트 — 적 방향으로 뿜어지고 사라짐
+var _bg_shader: Shader = preload("res://assets/shaders/remove_white_bg.gdshader")
 
-	# Tween으로 반원 회전 애니메이션
+func _show_hot_sauce_attack(target_pos: Vector2) -> void:
+	var sauce := Sprite2D.new()
+	sauce.texture = hot_sauce_texture
+	sauce.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sauce.scale = Vector2(0.06, 0.06)
+	sauce.global_position = player.global_position
+	sauce.z_index = 5
+	var mat := ShaderMaterial.new()
+	mat.shader = _bg_shader
+	sauce.material = mat
+
+	# 적 방향으로 회전
+	var dir := (target_pos - player.global_position).angle()
+	sauce.rotation = dir
+
+	add_child(sauce)
+
+	# 플레이어 → 적 방향으로 뿜어지는 애니메이션
 	var tween := create_tween()
-	var start_angle := -PI / 2
-	slash.rotation = start_angle
-	slash.position = player.position + Vector2(cos(start_angle), sin(start_angle)) * 60.0
-
-	tween.tween_method(func(angle: float):
-		slash.rotation = angle
-		slash.global_position = player.global_position + Vector2(cos(angle), sin(angle)) * 60.0
-	, start_angle, start_angle + PI, 0.15)
-	tween.tween_callback(slash.queue_free)
+	var end_pos := player.global_position + Vector2(cos(dir), sin(dir)) * 100.0
+	tween.tween_property(sauce, "global_position", end_pos, 0.15)
+	tween.parallel().tween_property(sauce, "modulate:a", 0.0, 0.2)
+	tween.tween_callback(sauce.queue_free)
 
 
 ## 가장 가까운 적 탐색

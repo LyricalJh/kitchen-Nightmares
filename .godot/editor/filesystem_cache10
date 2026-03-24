@@ -3,13 +3,33 @@
 README.md::TextFile::-1::1774329677::0::1::::<><><>0<>0<><>::
 todo.md::TextFile::-1::1774322769::0::1::::<><><>0<>0<><>::
 ::res://assets/::1774327025
-::res://assets/sprites/::1774331661
+::res://assets/sprites/::1774338110
+1. 핫소스 물총 (기본 무기  일직선 발사).png::CompressedTexture2D::7002019824685335365::1774337757::1774338355::1::::<><><>0<>0<>1a873cc257aaec10e44da91b30c86e4a<>res://.godot/imported/1. 핫소스 물총 (기본 무기  일직선 발사).png-02678379048869d7feb97997a5bcbbf4.ctex::
+4. 모차렐라 치즈 슬라임 괴물 (가격 상  체력 높음, 죽으면 분열함).png::CompressedTexture2D::6364505368609361494::1774337757::1774338355::1::::<><><>0<>0<>fbdaf1bf8b02fb396635b1ab6f1a8d3c<>res://.godot/imported/4. 모차렐라 치즈 슬라임 괴물 (가격 상  체력 높음, 죽으면 분열함).png-a7098c8301d54943ccc3d1b4cee1ed84.ctex::
+boss_truffle.png::CompressedTexture2D::3576213345759857738::1774338109::1774338355::1::::<><><>0<>0<>236d6844b693be3ac29ec475a926a0e5<>res://.godot/imported/boss_truffle.png-3ff960bff3e8947e057b997e8199001e.ctex::
+cheese_aura.png::CompressedTexture2D::6665224312196421059::1774338109::1774338355::1::::<><><>0<>0<>53482a1cb682961072040b9c2f03819c<>res://.godot/imported/cheese_aura.png-cb007e00e198b960ff604da6689fa904.ctex::
 enemy.png::CompressedTexture2D::7995598338501228857::1774328851::1774329027::1::::<><><>0<>0<>9469ecfcf639a0c54e6a7f355dcfe1b2<>res://.godot/imported/enemy.png-6b2203c402e38acd697818ffb85e8537.ctex::
+enemy_cheese.png::CompressedTexture2D::4501752439611095038::1774338109::1774338355::1::::<><><>0<>0<>77b55ea922ed36965e82ced2a13d5b97<>res://.godot/imported/enemy_cheese.png-eca9ee7fbf2d32a905c00b2abc4973d9.ctex::
+enemy_mushroom.png::CompressedTexture2D::7797178220642148268::1774338109::1774338354::1::::<><><>0<>0<>b2eb3ed9daca36ff393102f2cd4e8832<>res://.godot/imported/enemy_mushroom.png-f9895471933dfccdbe9b556abc7b1efd.ctex::
+enemy_onion.png::CompressedTexture2D::3170275809316313084::1774338109::1774338354::1::::<><><>0<>0<>a333df9644c9aaefc3e4d0839aa685cc<>res://.godot/imported/enemy_onion.png-0ce58a42a186e5141f4feb0c50f4c1bf.ctex::
+enemy_pepperoni.png::CompressedTexture2D::4721890148941197766::1774338109::1774338354::1::::<><><>0<>0<>0edb3a06e7a38155dc120647aafa4bda<>res://.godot/imported/enemy_pepperoni.png-81198ad75b4e017bbf9297de1776f08a.ctex::
 floor.png::CompressedTexture2D::4522873029844532551::1774328851::1774329026::1::::<><><>0<>0<>2d1a71a11422c97f43f28ca544caa047<>res://.godot/imported/floor.png-6264fbe74424f0aef23944979b83713d.ctex::
+hot_sauce.png::CompressedTexture2D::4166740480566108456::1774338109::1774338353::1::::<><><>0<>0<>56d4ccd6a8ec79a1410aae9fffc6e1f4<>res://.godot/imported/hot_sauce.png-5a6ba8c536bca815bb1205826dbc9385.ctex::
 player.png::CompressedTexture2D::7851217237557907590::1774328851::1774329026::1::::<><><>0<>0<>cdd8e4164f1051a922b34f7ad6aaff5a<>res://.godot/imported/player.png-e1eaffe0873063c60a0d0b322e4d87d9.ctex::
 projectile.png::CompressedTexture2D::5629871898702289725::1774328851::1774329027::1::::<><><>0<>0<>6d368e33fc45a2940d1b251e8bc19632<>res://.godot/imported/projectile.png-b30ac95c7332a01cec9cb5a32cb7793e.ctex::
+title_bg.png::CompressedTexture2D::5521972032012200788::1774338110::1774338354::1::::<><><>0<>0<>cafd54b3c7ef371d3c7c63c60b186957<>res://.godot/imported/title_bg.png-a70667a3e94956f2999067c9f23146c6.ctex::
+title_logo.png::CompressedTexture2D::578296984662675626::1774338109::1774338354::1::::<><><>0<>0<>148e49719090f6aa90dae6ed4778f835<>res://.godot/imported/title_logo.png-c080ea02d2d75010e109cdf8a56b259e.ctex::
 xp_gem.png::CompressedTexture2D::274909144002465200::1774328851::1774329027::1::::<><><>0<>0<>d3c01d279c3b79c7b2010c4f2b4ddeb5<>res://.godot/imported/xp_gem.png-7010d59028cfa9e54ef90b6ac5572071.ctex::
-::res://assets/sprites/floor_tiles/::1774331663
+갈릭 디핑 소스 폭탄 (투척 무기  던지면 터짐).png::CompressedTexture2D::7038582967934068825::1774337757::1774338353::1::::<><><>0<>0<>b026bb480d91e01634c284f18e6b3669<>res://.godot/imported/갈릭 디핑 소스 폭탄 (투척 무기  던지면 터짐).png-ea5ea983be437c125cf5ebac3ffb5e44.ctex::
+메인 타이틀.png::CompressedTexture2D::7344637343578936925::1774337757::1774338354::1::::<><><>0<>0<>aece5fee57be031c168a7194ba2e5c31<>res://.godot/imported/메인 타이틀.png-9ac057ee3d5608873b3b1a39380cdc7d.ctex::
+메인 화면.png::CompressedTexture2D::6230759312852516769::1774337757::1774338354::1::::<><><>0<>0<>3959604f90c563193e7ad181b515a732<>res://.godot/imported/메인 화면.png-47d37010f68c37bfc3f102184e5a8a77.ctex::
+보스 블랙 트러플(송로버섯) 대장 (가격 최상  보스 몹).png::CompressedTexture2D::2990980083438498344::1774337757::1774338353::1::::<><><>0<>0<>44f97e17de32616f88749fd463d35f8d<>res://.godot/imported/보스 블랙 트러플(송로버섯) 대장 (가격 최상  보스 몹).png-e42a3f6b626098a6d167c47289015b95.ctex::
+스테이지선택(피자지옥).png::CompressedTexture2D::7280808197367266398::1774337757::1774338353::1::::<><><>0<>0<>9073eb90f01bda357f1cb920ad14a3d4<>res://.godot/imported/스테이지선택(피자지옥).png-c8a58d866c74c27b973e818d75e7984f.ctex::
+양송이 버섯 괴물 (가격 중  체력 보통, 맷집 담당).png::CompressedTexture2D::5883993334457146801::1774337757::1774338352::1::::<><><>0<>0<>502be68479c6cc7572bcfffc88f5515d<>res://.godot/imported/양송이 버섯 괴물 (가격 중  체력 보통, 맷집 담당).png-98939e1f946ce5b936ed9a9a346e3512.ctex::
+양파 괴물 (가격 하  체력 낮고 빠름).png::CompressedTexture2D::7016109805088751448::1774337757::1774338352::1::::<><><>0<>0<>e683b8baf19c15e19123316dbef6fff6<>res://.godot/imported/양파 괴물 (가격 하  체력 낮고 빠름).png-0d962eb6fa8e245bf9ff895d9ff82baf.ctex::
+치즈 가루 뿌리개 (오라 무기  주인공 주변을 지속적으로 맴도는 광역 데미지).png::CompressedTexture2D::1330062004167725023::1774337757::1774338352::1::::<><><>0<>0<>b0d4fc93672356684ee1a0630222be03<>res://.godot/imported/치즈 가루 뿌리개 (오라 무기  주인공 주변을 지속적으로 맴도는 광역 데미지).png-22cfdba120d6c1b3a2004546f5fff511.ctex::
+페퍼로니 괴물 (가격 중상  공격력 높음, 돌진형).png::CompressedTexture2D::8310565908412478711::1774337757::1774338352::1::::<><><>0<>0<>7843557fc75cd5e7cad883558846acd8<>res://.godot/imported/페퍼로니 괴물 (가격 중상  공격력 높음, 돌진형).png-8289306ac38d1ffb574a44ae29404c6c.ctex::
+::res://assets/sprites/floor_tiles/::1774331826
 tile_1.png::CompressedTexture2D::3744560171493177021::1774331661::1774331825::1::::<><><>0<>0<>6d9a25bfae9a6185c86ecf5ac6e112e5<>res://.godot/imported/tile_1.png-5b2771049c52d6dde7d54476661937d5.ctex::
 tile_2.png::CompressedTexture2D::776528038221920558::1774331661::1774331825::1::::<><><>0<>0<>a906b296b27f75281b316239f562f5b1<>res://.godot/imported/tile_2.png-6273fdd9c8141d5211a6317f7f670ada.ctex::
 tile_3.png::CompressedTexture2D::6217521941675795950::1774331661::1774331825::1::::<><><>0<>0<>062c94f9283b5fc9fb1cfc79f97c7825<>res://.godot/imported/tile_3.png-944f507c8056dd0285c40629f31bae7f.ctex::
@@ -210,7 +230,7 @@ tile_0129.png::CompressedTexture2D::4845943730454539609::1774326194::1774327163:
 tile_0130.png::CompressedTexture2D::1349008946875512212::1774326194::1774327163::1::::<><><>0<>0<>f24d4feada7a343763a9dfe45e704545<>res://.godot/imported/tile_0130.png-10724c57d0bab121b622e9dc9d1a0c71.ctex::
 tile_0131.png::CompressedTexture2D::164587833577409214::1774326194::1774327163::1::::<><><>0<>0<>158f425bac8642e0d1a3571c54f7e272<>res://.godot/imported/tile_0131.png-54b43600eb38e4b7841d43a0369814a2.ctex::
 ::res://docs/asset/map_tiles/::1774331439
-::res://docs/asset/map_tiles/25_tiles/::1774331390
+::res://docs/asset/map_tiles/25_tiles/::1774331825
 tile_1.png::CompressedTexture2D::1434731728282793887::1774298860::1774331825::1::::<><><>0<>0<>5524c735338f1d477495c47e8caadcc2<>res://.godot/imported/tile_1.png-7c280b165f5b3bff4c47eee9e09e3a9f.ctex::
 tile_2.png::CompressedTexture2D::2472819902874616053::1774298860::1774331825::1::::<><><>0<>0<>534840e005f3c3ddcaa6a0a495151296<>res://.godot/imported/tile_2.png-7ae60ab5fc4959f612ffe0f2b6d339ca.ctex::
 tile_3.png::CompressedTexture2D::2047706994891146360::1774298860::1774331825::1::::<><><>0<>0<>06ba92fe100b4947c54fd31cbb3ea039<>res://.godot/imported/tile_3.png-a99f3cba78ee2768ce8a669dde656778.ctex::
@@ -236,23 +256,23 @@ tile_22.png::CompressedTexture2D::7261599127198037683::1774298860::1774331825::1
 tile_23.png::CompressedTexture2D::1951205052926770577::1774298860::1774331825::1::::<><><>0<>0<>e5432f4737cb8c909cbdb4916453adc1<>res://.godot/imported/tile_23.png-a26f8a147182b5b9c40372ac6b99786a.ctex::
 tile_24.png::CompressedTexture2D::6540127634913637736::1774298860::1774331825::1::::<><><>0<>0<>61a3fb74c1e4314945db65ab36a80d45<>res://.godot/imported/tile_24.png-b87beb7c370a1908df0f06d54f43076b.ctex::
 tile_25.png::CompressedTexture2D::6570822960267536626::1774298860::1774331825::1::::<><><>0<>0<>3295094b70a44f4bc3f6c0c96a7feb77<>res://.godot/imported/tile_25.png-4f3a64d893dfc59b7096f7b504d7fdd8.ctex::
-::res://scenes/::1774330380
+::res://scenes/::1774338304
 enemy.tscn::PackedScene::5754021659458056176::1774329909::0::1::::<><><>0<>0<><>::res://scripts/enemy.gd<>res://assets/sprites/enemy.png
 game_over_ui.tscn::PackedScene::-1::1774327162::0::1::::<><><>0<>0<><>::
 hud.tscn::PackedScene::-1::1774326456::0::1::::<><><>0<>0<><>::
-level_up_ui.tscn::PackedScene::-1::1774325361::0::1::::<><><>0<>0<><>::
-main.tscn::PackedScene::1088680621685117941::1774328206::0::1::::<><><>0<>0<><>::uid://dgywurs588x8r::::res://scripts/main.gd<>uid://bq4k7m2r1x3a5::::res://scenes/player.tscn
+level_up_ui.tscn::PackedScene::-1::1774338304::0::1::::<><><>0<>0<><>::
+main.tscn::PackedScene::1088680621685117941::1774332461::0::1::::<><><>0<>0<><>::uid://dgywurs588x8r::::res://scripts/main.gd<>uid://bq4k7m2r1x3a5::::res://scenes/player.tscn<>res://scenes/hud.tscn<>res://scenes/level_up_ui.tscn<>res://scenes/game_over_ui.tscn
 player.tscn::PackedScene::3569974124899978310::1774330380::0::1::::<><><>0<>0<><>::res://scripts/player.gd
 projectile.tscn::PackedScene::8057629460924911400::1774329919::0::1::::<><><>0<>0<><>::res://scripts/projectile.gd<>res://assets/sprites/projectile.png
-title_screen.tscn::PackedScene::-1::1774327162::0::1::::<><><>0<>0<><>::
+title_screen.tscn::PackedScene::-1::1774338134::0::1::::<><><>0<>0<><>::
 xp_gem.tscn::PackedScene::3819788790295507810::1774329925::0::1::::<><><>0<>0<><>::res://scripts/xp_gem.gd<>res://assets/sprites/xp_gem.png
-::res://scripts/::1774331742
-enemy.gd::GDScript::8373413681350595256::1774325230::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://scripts/::1774338291
+enemy.gd::GDScript::8373413681350595256::1774332443::0::1::::<>CharacterBody2D<><>0<>0<><>::
 game_over_ui.gd::GDScript::2185452370698686013::1774326394::0::1::::<>CanvasLayer<><>0<>0<><>::
 hud.gd::GDScript::3252439759786452324::1774326450::0::1::::<>CanvasLayer<><>0<>0<><>::
-level_up_ui.gd::GDScript::3292232116625194355::1774325277::0::1::::<>CanvasLayer<><>0<>0<><>::
-main.gd::GDScript::7631312590835810727::1774331742::0::1::::<>Node2D<><>0<>0<><>::
-player.gd::GDScript::8427591016666731170::1774328180::0::1::::<>CharacterBody2D<><>0<>0<><>::
+level_up_ui.gd::GDScript::3292232116625194355::1774337991::0::1::::<>CanvasLayer<><>0<>0<><>::
+main.gd::GDScript::7631312590835810727::1774338278::0::1::::<>Node2D<><>0<>0<><>::
+player.gd::GDScript::8427591016666731170::1774338291::0::1::::<>CharacterBody2D<><>0<>0<><>::
 projectile.gd::GDScript::172139579725594252::1774325243::0::1::::<>Area2D<><>0<>0<><>::
 title_screen.gd::GDScript::2444364125893922813::1774326369::0::1::::<>Control<><>0<>0<><>::
 xp_gem.gd::GDScript::2283508492459558197::1774325180::0::1::::<>Area2D<><>0<>0<><>::

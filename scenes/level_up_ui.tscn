@@ -39,9 +39,14 @@ text = "회전 칼날 추가"
 [node name="SkillButton2" type="Button" parent="Background/CenterContainer/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(250, 50)
-text = "근접 공격 속도 +20%"
+text = "갈릭 폭탄 추가"
 
 [node name="SkillButton3" type="Button" parent="Background/CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(250, 50)
+text = "근접 공격 속도 +20%"
+
+[node name="SkillButton4" type="Button" parent="Background/CenterContainer/VBoxContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(250, 50)
 text = "이동 속도 +30"

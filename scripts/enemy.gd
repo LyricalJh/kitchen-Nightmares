@@ -17,6 +17,9 @@ var bounce_time: float = 0.0
 const BOUNCE_SPEED: float = 8.0   # 바운스 빈도 (높을수록 빠르게 통통)
 const BOUNCE_HEIGHT: float = 14.0  # 바운스 높이 (픽셀)
 
+# 흰 배경 제거 셰이더
+var bg_remove_shader: Shader = preload("res://assets/shaders/remove_white_bg.gdshader")
+
 # 스프라이트 참조
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -26,6 +29,10 @@ func _ready() -> void:
 	add_to_group("enemies")
 	# 각 적마다 바운스 타이밍을 랜덤으로 어긋나게 (자연스러움)
 	bounce_time = randf() * TAU
+	# 흰 배경 제거 셰이더 적용
+	var mat := ShaderMaterial.new()
+	mat.shader = bg_remove_shader
+	sprite.material = mat
 
 
 func _physics_process(delta: float) -> void:
