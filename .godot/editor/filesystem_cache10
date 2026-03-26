@@ -1,9 +1,11 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1774329677
+::res://::1774504088
 README.md::TextFile::-1::1774329677::0::1::::<><><>0<>0<><>::
 todo.md::TextFile::-1::1774322769::0::1::::<><><>0<>0<><>::
-::res://assets/::1774327025
-::res://assets/sprites/::1774338110
+::res://assets/::1774338543
+::res://assets/shaders/::1774338699
+remove_white_bg.gdshader::Shader::6289560970201530882::1774338555::0::1::::<><><>0<>0<><>::
+::res://assets/sprites/::1774338355
 1. 핫소스 물총 (기본 무기  일직선 발사).png::CompressedTexture2D::7002019824685335365::1774337757::1774338355::1::::<><><>0<>0<>1a873cc257aaec10e44da91b30c86e4a<>res://.godot/imported/1. 핫소스 물총 (기본 무기  일직선 발사).png-02678379048869d7feb97997a5bcbbf4.ctex::
 4. 모차렐라 치즈 슬라임 괴물 (가격 상  체력 높음, 죽으면 분열함).png::CompressedTexture2D::6364505368609361494::1774337757::1774338355::1::::<><><>0<>0<>fbdaf1bf8b02fb396635b1ab6f1a8d3c<>res://.godot/imported/4. 모차렐라 치즈 슬라임 괴물 (가격 상  체력 높음, 죽으면 분열함).png-a7098c8301d54943ccc3d1b4cee1ed84.ctex::
 boss_truffle.png::CompressedTexture2D::3576213345759857738::1774338109::1774338355::1::::<><><>0<>0<>236d6844b693be3ac29ec475a926a0e5<>res://.godot/imported/boss_truffle.png-3ff960bff3e8947e057b997e8199001e.ctex::
@@ -256,23 +258,23 @@ tile_22.png::CompressedTexture2D::7261599127198037683::1774298860::1774331825::1
 tile_23.png::CompressedTexture2D::1951205052926770577::1774298860::1774331825::1::::<><><>0<>0<>e5432f4737cb8c909cbdb4916453adc1<>res://.godot/imported/tile_23.png-a26f8a147182b5b9c40372ac6b99786a.ctex::
 tile_24.png::CompressedTexture2D::6540127634913637736::1774298860::1774331825::1::::<><><>0<>0<>61a3fb74c1e4314945db65ab36a80d45<>res://.godot/imported/tile_24.png-b87beb7c370a1908df0f06d54f43076b.ctex::
 tile_25.png::CompressedTexture2D::6570822960267536626::1774298860::1774331825::1::::<><><>0<>0<>3295094b70a44f4bc3f6c0c96a7feb77<>res://.godot/imported/tile_25.png-4f3a64d893dfc59b7096f7b504d7fdd8.ctex::
-::res://scenes/::1774338304
+::res://scenes/::1774338902
 enemy.tscn::PackedScene::5754021659458056176::1774329909::0::1::::<><><>0<>0<><>::res://scripts/enemy.gd<>res://assets/sprites/enemy.png
 game_over_ui.tscn::PackedScene::-1::1774327162::0::1::::<><><>0<>0<><>::
 hud.tscn::PackedScene::-1::1774326456::0::1::::<><><>0<>0<><>::
-level_up_ui.tscn::PackedScene::-1::1774338304::0::1::::<><><>0<>0<><>::
+level_up_ui.tscn::PackedScene::6671385580136374776::1774338902::0::1::::<><><>0<>0<><>::res://scripts/level_up_ui.gd
 main.tscn::PackedScene::1088680621685117941::1774332461::0::1::::<><><>0<>0<><>::uid://dgywurs588x8r::::res://scripts/main.gd<>uid://bq4k7m2r1x3a5::::res://scenes/player.tscn<>res://scenes/hud.tscn<>res://scenes/level_up_ui.tscn<>res://scenes/game_over_ui.tscn
 player.tscn::PackedScene::3569974124899978310::1774330380::0::1::::<><><>0<>0<><>::res://scripts/player.gd
 projectile.tscn::PackedScene::8057629460924911400::1774329919::0::1::::<><><>0<>0<><>::res://scripts/projectile.gd<>res://assets/sprites/projectile.png
 title_screen.tscn::PackedScene::-1::1774338134::0::1::::<><><>0<>0<><>::
 xp_gem.tscn::PackedScene::3819788790295507810::1774329925::0::1::::<><><>0<>0<><>::res://scripts/xp_gem.gd<>res://assets/sprites/xp_gem.png
-::res://scripts/::1774338291
-enemy.gd::GDScript::8373413681350595256::1774332443::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://scripts/::1774340006
+enemy.gd::GDScript::8373413681350595256::1774339590::0::1::::<>CharacterBody2D<><>0<>0<><>::
 game_over_ui.gd::GDScript::2185452370698686013::1774326394::0::1::::<>CanvasLayer<><>0<>0<><>::
 hud.gd::GDScript::3252439759786452324::1774326450::0::1::::<>CanvasLayer<><>0<>0<><>::
-level_up_ui.gd::GDScript::3292232116625194355::1774337991::0::1::::<>CanvasLayer<><>0<>0<><>::
-main.gd::GDScript::7631312590835810727::1774338278::0::1::::<>Node2D<><>0<>0<><>::
-player.gd::GDScript::8427591016666731170::1774338291::0::1::::<>CharacterBody2D<><>0<>0<><>::
+level_up_ui.gd::GDScript::3292232116625194355::1774339572::0::1::::<>CanvasLayer<><>0<>0<><>::
+main.gd::GDScript::7631312590835810727::1774339488::0::1::::<>Node2D<><>0<>0<><>::
+player.gd::GDScript::8427591016666731170::1774340006::0::1::::<>CharacterBody2D<><>0<>0<><>::
 projectile.gd::GDScript::172139579725594252::1774325243::0::1::::<>Area2D<><>0<>0<><>::
 title_screen.gd::GDScript::2444364125893922813::1774326369::0::1::::<>Control<><>0<>0<><>::
-xp_gem.gd::GDScript::2283508492459558197::1774325180::0::1::::<>Area2D<><>0<>0<><>::
+xp_gem.gd::GDScript::2283508492459558197::1774338841::0::1::::<>Area2D<><>0<>0<><>::
